@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <string.h>
+
 int main (){
 
 int c; // LIMPA O BUFFER  --->  while ((c = getchar()) != '\n' && c != EOF);
@@ -7,13 +9,41 @@ int c; // LIMPA O BUFFER  --->  while ((c = getchar()) != '\n' && c != EOF);
 char carta1[20], carta2 [20];
 char estado1[20], estado2 [20];
 char cidade1[20], cidade2 [20];
-float populacao1, populacao2;
-float area1, area2;
-float pib1, pib2;
-int pontosturisticos1, pontosturisticos2;
-int resultado1 = 0, resultado2 = 0;
-//APRESENTACAO DO PROGRAMA:
-printf ("\n---SUPER TRUNFO---\n");
+float area1 = 0, area2 = 0;
+float pib1 = 0, pib2 = 0;
+float populacao1 = 0, populacao2 = 0;
+int pontosturisticos1 = 0, pontosturisticos2 = 0;
+float resultado1 = 0, resultado2 = 0;
+int menu = 0, continuar = 1;
+
+printf ("1. Entrar no Jogo\n");
+printf ("2. Ver Regras do Jogo\n");
+printf ("3. Sair\n");
+printf ("Escolha uma opção: ");
+scanf ("%d", &menu);
+while ((c = getchar()) != '\n' && c != EOF); // limpa buffer
+
+while (continuar)
+{
+
+switch (menu)
+{
+case 1:
+    printf ("\n--- SUPER TRUNFO ---\n");
+    break;
+
+case 2:
+    printf ("Quem tiver o maior numero em M² por pessoa Ganha!\n");
+    return 0;
+
+case 3:
+    printf ("Saindo.....\n");
+    return 0;
+
+default:
+    printf ("Opção invalida\n");
+    continue;
+}
 
 // IMPRESSAO E LEITURA DA PRIMEIRA CARTA:
 printf ("NOME DA PRIMEIRA CARTA: ");
@@ -51,17 +81,25 @@ printf ("AREA EM KM²: ");
 scanf ("%f", &area2);
 printf ("PIB: ");
 scanf ("%f", &pib2);
-printf ("PONTOS TURISTICOS: ");
+printf ("PONTOS TURISTICOS: \n");
 scanf ("%d", &pontosturisticos2);
 
-if (populacao1 > populacao2) resultado1++;
-else if (populacao2 > populacao1) resultado2++;
-if // continuar......
+resultado1 = area1 / populacao1;
+printf ("M² por pessoa da carta %s: %fM²\n", carta1, resultado1);
 
-if ( resultado1 > resultado2) {
-    printf ("CARTA %s GANHOU!\n", carta1);
-} else
-printf ("CARTA %s GANHOU!\n", carta2);
+resultado2 = area2 / populacao2;
+printf ("M² por pessoa da carta %s: %fM²\n", carta2, resultado2);
+
+if (resultado1 > resultado2) {
+    printf ("PARABENS! %s GANHOU!\n", carta1);
+} else {
+    printf ("PARABENS! %s GANHOU!\n", carta2);
+}
+printf("\nDeseja jogar novamente? (1 = Sim / 0 = Não): ");
+scanf("%d", &continuar);
+while ((c = getchar()) != '\n' && c != EOF); // limpa buffer
+}
+printf ("FIM DO JOGO\n");
 
 
 return 0;
